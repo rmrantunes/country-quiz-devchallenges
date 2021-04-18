@@ -2,7 +2,7 @@
 
 export enum QuestionType {
   CAPITAL_OF = "capital-of",
-  FLAG = "flag",
+  FLAG_OF = "flag-of",
   LANGUAGE_OF = "language-of",
 }
 
