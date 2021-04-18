@@ -20,3 +20,7 @@ export interface MappedCountry {
   code?: string;
   capital?: string;
 }
+
+export interface Source {
+  countries: Country[];
+}

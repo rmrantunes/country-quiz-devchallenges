@@ -1,10 +1,29 @@
 import Head from "next/head";
 import { QuestionGenerator } from "utils/question-generator";
-import countries from "data/countries.json";
 
-export default function Home(props) {
-  const questionGenerator = new QuestionGenerator(props.countries);
-  console.log([questionGenerator.capitalOf(), questionGenerator.flag()]);
+import countries from "data/countries.json";
+import languages from "data/languages.json";
+import continents from "data/continents.json";
+
+import { InferGetStaticPropsType } from "next";
+
+export const getStaticProps = async () => {
+  return {
+    props: {
+      countries,
+      languages,
+      continents,
+    },
+  };
+};
+
+export default function Home(
+  props: InferGetStaticPropsType<typeof getStaticProps>
+) {
+  const questionGenerator = new QuestionGenerator({
+    countries: props.countries,
+  });
+  // console.log([questionGenerator.capitalOf(), questionGenerator.flag()]);
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
@@ -84,11 +103,3 @@ export default function Home(props) {
     </div>
   );
 }
-
-export const getStaticProps = async () => {
-  return {
-    props: {
-      countries,
-    },
-  };
-};

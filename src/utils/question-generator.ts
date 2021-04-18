@@ -1,16 +1,15 @@
 import { Question } from "types/question";
-import { Country, MappedCountry } from "types/question-source";
+import { Country, MappedCountry, Source } from "types/question-source";
 
 export class QuestionGenerator {
-  constructor(private countries: Country[]) {}
+  constructor(private source: Source) {}
 
   private selectFourCountries(): Country[] {
     const selectedCountries = [];
+    const { countries } = this.source;
     for (let i = 0; i < 4; i++) {
-      const countriesRandomIndex = Math.floor(
-        Math.random() * this.countries.length
-      );
-      selectedCountries.push(this.countries[countriesRandomIndex]);
+      const countriesRandomIndex = Math.floor(Math.random() * countries.length);
+      selectedCountries.push(countries[countriesRandomIndex]);
     }
     return selectedCountries;
   }
