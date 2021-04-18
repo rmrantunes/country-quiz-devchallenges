@@ -1,6 +1,10 @@
 import Head from "next/head";
+import { QuestionGenerator } from "utils/question-generator";
+import countries from "data/countries.json";
 
-export default function Home() {
+export default function Home(props) {
+  const questionGenerator = new QuestionGenerator(props.countries);
+  console.log([questionGenerator.capitalOf(), questionGenerator.flag()]);
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
@@ -80,3 +84,11 @@ export default function Home() {
     </div>
   );
 }
+
+export const getStaticProps = async () => {
+  return {
+    props: {
+      countries,
+    },
+  };
+};
