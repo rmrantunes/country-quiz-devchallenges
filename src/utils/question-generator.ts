@@ -1,14 +1,21 @@
 import { Question, QuestionType } from "types/question";
-import { Country, MappedCountry, Source } from "types/question-source";
+import {
+  Country,
+  Language,
+  MappedCountry,
+  Source,
+} from "types/question-source";
 import { getRandomArrayIndex } from "./app-utils";
 
 export class QuestionGenerator {
   constructor(private source: Source) {}
 
-  private selectFourCountries(): Country[] {
+  private selectNCountries(
+    countries = this.source.countries,
+    amount = 4
+  ): Country[] {
     const selectedCountries = [];
-    const { countries } = this.source;
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < amount; i++) {
       const countriesRandomIndex = getRandomArrayIndex(countries);
       selectedCountries.push(countries[countriesRandomIndex]);
     }
@@ -27,7 +34,7 @@ export class QuestionGenerator {
   }
 
   capitalOf(): Question {
-    const countries = this.selectFourCountries();
+    const countries = this.selectNCountries();
     const countriesCapitalAndName = countries.map(({ name, capital }) => ({
       name,
       capital,
@@ -42,8 +49,8 @@ export class QuestionGenerator {
     };
   }
 
-  flag(): Question {
-    const countries = this.selectFourCountries();
+  flagOf(): Question {
+    const countries = this.selectNCountries();
     const countriesNameAndCode = countries.map(({ name, code }) => ({
       name,
       code: code.toLowerCase(),
@@ -52,7 +59,7 @@ export class QuestionGenerator {
     const correctCountry = this.selectCorrectCountry(countriesNameAndCode);
 
     return {
-      type: QuestionType.FLAG,
+      type: QuestionType.FLAG_OF,
       flagSrc: `https://www.countryflags.io/${correctCountry.code}/flat/64.png`,
       title: "Which country does this flag belongs to?",
       correctAnswer: correctCountry.name,
@@ -60,9 +67,43 @@ export class QuestionGenerator {
     };
   }
 
-  language(): Question {
+  private selectLanguageSpeaker(language: Language) {
+    const { countries } = this.source;
+    return this.selectNCountries(
+      countries.filter((country) =>
+        country.languages.some(({ name }) => name === language.name)
+      ),
+      1
+    )[0];
+  }
+
+  private selectNotLanguageSpeakers(language: Language) {
+    const { countries } = this.source;
+    return this.selectNCountries(
+      countries.filter((country) =>
+        country.languages.some(({ name }) => name !== language.name)
+      ),
+      3
+    );
+  }
+
+  languageOf(): Question {
+    const language = this.selectLanguage();
+    const languageSpeakerCountry = this.selectLanguageSpeaker(language);
+    const notLanguageSpeakerCountries = this.selectNotLanguageSpeakers(
+      language
+    );
+
+    const possibleAnswers = [
+      ...notLanguageSpeakerCountries.map(({ name }) => name),
+      languageSpeakerCountry.name,
+    ];
+
     return {
       type: QuestionType.LANGUAGE_OF,
+      correctAnswer: languageSpeakerCountry.name,
+      possibleAnswers,
+      title: `Which one of these countries speaks ${language.name}?`,
     };
   }
 }
