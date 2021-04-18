@@ -22,8 +22,13 @@ export default function Home(
 ) {
   const questionGenerator = new QuestionGenerator({
     countries: props.countries,
+    languages: props.languages,
   });
-  // console.log([questionGenerator.capitalOf(), questionGenerator.flag()]);
+  // console.log([
+  //   questionGenerator.capitalOf(),
+  //   questionGenerator.flagOf(),
+  //   questionGenerator.languageOf(),
+  // ]);
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
