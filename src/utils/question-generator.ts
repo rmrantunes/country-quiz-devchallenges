@@ -1,4 +1,4 @@
-import { Question } from "types/question";
+import { Question, QuestionType } from "types/question";
 import { Country, MappedCountry, Source } from "types/question-source";
 import { getRandomArrayIndex } from "./app-utils";
 
@@ -35,7 +35,7 @@ export class QuestionGenerator {
     const correctCountry = this.selectCorrectCountry(countriesCapitalAndName);
 
     return {
-      type: "capital-of",
+      type: QuestionType.CAPITAL_OF,
       title: correctCountry.capital + " is the capital of",
       correctAnswer: correctCountry.name,
       possibleAnswers: countriesCapitalAndName.map(({ name }) => name),
@@ -52,7 +52,7 @@ export class QuestionGenerator {
     const correctCountry = this.selectCorrectCountry(countriesNameAndCode);
 
     return {
-      type: "flag",
+      type: QuestionType.FLAG,
       flagSrc: `https://www.countryflags.io/${correctCountry.code}/flat/64.png`,
       title: "Which country does this flag belongs to?",
       correctAnswer: correctCountry.name,
@@ -62,7 +62,7 @@ export class QuestionGenerator {
 
   language(): Question {
     return {
-      type: "language",
+      type: QuestionType.LANGUAGE_OF,
     };
   }
 }

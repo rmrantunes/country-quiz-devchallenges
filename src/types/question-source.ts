@@ -23,4 +23,5 @@ export interface MappedCountry {
 
 export interface Source {
   countries: Country[];
+  languages: Language[];
 }
