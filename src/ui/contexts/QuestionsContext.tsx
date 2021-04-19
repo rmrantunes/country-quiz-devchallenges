@@ -9,6 +9,7 @@ interface QuestionContextValue {
   setSelectedAnswer: React.Dispatch<React.SetStateAction<string>>;
   usersChoicesLog: boolean[];
   submitAnswer(): void;
+  hasSessionFinished: boolean;
 }
 
 export const QuestionContext = createContext({} as QuestionContextValue);
@@ -21,19 +22,26 @@ export const QuestionsProvider: React.FC<{ questions: Question[] }> = (
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [usersChoicesLog, setusersChoicesLog] = useState<boolean[]>([]);
+  const [hasSessionFinished, setHasSessionFinished] = useState(false);
 
   const currentQuestion = questions[questionIndex];
+  const isThereAnyQuestionAhead = questions[questionIndex + 1] !== undefined;
 
   function goToNextQuestion() {
     setIsSubmitted(false);
     setSelectedAnswer("");
-    setQuestionIndex((state) => state + 1);
+    if (isThereAnyQuestionAhead) {
+      setQuestionIndex((state) => state + 1);
+      return;
+    }
+    setHasSessionFinished(true);
   }
 
   function submitAnswer() {
     if (!selectedAnswer) return;
-    const isAnswerCorrect = selectedAnswer === currentQuestion.correctAnswer;
-    setusersChoicesLog((state) => [...state, isAnswerCorrect]);
+    const { correctAnswer } = currentQuestion;
+    const isSelectedAnswerCorrect = selectedAnswer === correctAnswer;
+    setusersChoicesLog((state) => [...state, isSelectedAnswerCorrect]);
     setIsSubmitted(true);
   }
 
@@ -47,6 +55,7 @@ export const QuestionsProvider: React.FC<{ questions: Question[] }> = (
         selectedAnswer,
         setSelectedAnswer,
         submitAnswer,
+        hasSessionFinished,
       }}
     >
       {props.children}
