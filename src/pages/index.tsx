@@ -3,12 +3,13 @@ import { InferGetStaticPropsType } from "next";
 
 import countries from "data/countries.json";
 import languages from "data/languages.json";
-import continents from "data/continents.json";
+import { QuestionGenerator } from "utils/question-generator";
 
 import { Container } from "ui/components/Layout";
 import { Modal } from "ui/components/Modal";
 import { QuestionsProvider } from "ui/contexts/QuestionsContext";
-import { QuestionGenerator } from "utils/question-generator";
+
+
 const questionGenerator = new QuestionGenerator({ countries, languages });
 
 export const getStaticProps = async () => {
