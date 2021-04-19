@@ -4,7 +4,7 @@ import { Question } from "types/question";
 interface QuestionContextValue {
   currentQuestion: Question;
   goToNextQuestion(): void;
-  isSubmited: boolean;
+  isSubmitted: boolean;
   selectedAnswer: string;
   setSelectedAnswer: React.Dispatch<React.SetStateAction<string>>;
   userChoicesLog: boolean[];
@@ -18,14 +18,14 @@ export const QuestionsProvider: React.FC<{ questions: Question[] }> = (
 ) => {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [questions] = useState(props.questions);
-  const [isSubmited, setIsSubmited] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [userChoicesLog, setUserChoicesLog] = useState<boolean[]>([]);
 
   const currentQuestion = questions[questionIndex];
 
   function goToNextQuestion() {
-    setIsSubmited(false);
+    setIsSubmitted(false);
     setSelectedAnswer("");
     setQuestionIndex((state) => state + 1);
   }
@@ -34,7 +34,7 @@ export const QuestionsProvider: React.FC<{ questions: Question[] }> = (
     if (!selectedAnswer) return;
     const isAnswerCorrect = selectedAnswer === currentQuestion.correctAnswer;
     setUserChoicesLog((state) => [...state, isAnswerCorrect]);
-    setIsSubmited(true);
+    setIsSubmitted(true);
   }
 
   return (
@@ -42,7 +42,7 @@ export const QuestionsProvider: React.FC<{ questions: Question[] }> = (
       value={{
         currentQuestion,
         goToNextQuestion,
-        isSubmited,
+        isSubmitted,
         userChoicesLog,
         selectedAnswer,
         setSelectedAnswer,

@@ -9,7 +9,7 @@ interface CurrentQuestionProps {
 const letters = ["A", "B", "C", "D"];
 
 export const CurrentQuestion = (props: CurrentQuestionProps) => {
-  const { selectedAnswer, setSelectedAnswer, isSubmited } = useContext(
+  const { selectedAnswer, setSelectedAnswer, isSubmitted } = useContext(
     QuestionContext
   );
   const { correctAnswer } = props.question;
@@ -33,11 +33,11 @@ export const CurrentQuestion = (props: CurrentQuestionProps) => {
                 ? "bg-mustard  text-white"
                 : "border-gray-500"
             } ${
-              isSubmited && possibleAnswer === correctAnswer
+              isSubmitted && possibleAnswer === correctAnswer
                 ? "bg-green-500 text-white"
                 : ""
             }${
-              isSubmited &&
+              isSubmitted &&
               possibleAnswer !== correctAnswer &&
               selectedAnswer === possibleAnswer
                 ? "bg-red-500"
@@ -45,7 +45,7 @@ export const CurrentQuestion = (props: CurrentQuestionProps) => {
             }
             `}
             type="button"
-            disabled={isSubmited}
+            disabled={isSubmitted}
             onClick={() => setSelectedAnswer(possibleAnswer)}
           >
             <span>{letters[index]}</span>
