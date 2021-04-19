@@ -33,7 +33,7 @@ export class QuestionGenerator {
     return languages[languagesRandomIndex];
   }
 
-  capitalOf(): Question {
+  whichCountryForGivenCapital(): Question {
     const countries = this.selectNCountries();
     const countriesCapitalAndName = countries.map(({ name, capital }) => ({
       name,
@@ -49,7 +49,7 @@ export class QuestionGenerator {
     };
   }
 
-  flagOf(): Question {
+  whichCountryForGivenFlag(): Question {
     const countries = this.selectNCountries();
     const countriesNameAndCode = countries.map(({ name, code }) => ({
       name,
@@ -87,7 +87,7 @@ export class QuestionGenerator {
     );
   }
 
-  languageOf(): Question {
+  whichCountryForGivenLanguage(): Question {
     const language = this.selectLanguage();
     const languageSpeakerCountry = this.selectLanguageSpeaker(language);
     const notLanguageSpeakerCountries = this.selectNotLanguageSpeakers(
@@ -108,7 +108,11 @@ export class QuestionGenerator {
   }
 
   generate(amount: number) {
-    const generatorMethods = ["flagOf", "capitalOf", "languageOf"];
+    const generatorMethods = [
+      "whichCountryForGivenFlag",
+      "whichCountryForGivenCapital",
+      "whichCountryForGivenLanguage",
+    ];
     const questions: Question[] = [];
 
     for (let i = 0; i < amount; i++) {
