@@ -106,4 +106,16 @@ export class QuestionGenerator {
       title: `Which one of these countries speaks ${language.name}?`,
     };
   }
+
+  generate(amount: number) {
+    const generatorMethods = ["flagOf", "capitalOf", "languageOf"];
+    const questions: Question[] = [];
+
+    for (let i = 0; i < amount; i++) {
+      const randomIndex = getRandomArrayIndex(generatorMethods);
+      questions.push(this[generatorMethods[randomIndex]]());
+    }
+
+    return questions;
+  }
 }
