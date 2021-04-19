@@ -38,8 +38,8 @@ export const CurrentQuestion = (props: CurrentQuestionProps) => {
                 : ""
             }${
               isSubmited &&
-              selectedAnswer === possibleAnswer &&
-              possibleAnswer !== correctAnswer
+              possibleAnswer !== correctAnswer &&
+              selectedAnswer === possibleAnswer
                 ? "bg-red-500"
                 : ""
             }
