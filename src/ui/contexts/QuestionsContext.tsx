@@ -7,6 +7,7 @@ interface QuestionContextValue {
   isSubmited: boolean;
   selectedAnswer: string;
   setSelectedAnswer: React.Dispatch<React.SetStateAction<string>>;
+  userChoicesLog: boolean[];
   submitAnswer(): void;
 }
 
@@ -19,7 +20,7 @@ export const QuestionsProvider: React.FC<{ questions: Question[] }> = (
   const [questions] = useState(props.questions);
   const [isSubmited, setIsSubmited] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState("");
-  const [correctAnswers, setCorrectAnswers] = useState<Question[]>([]);
+  const [userChoicesLog, setUserChoicesLog] = useState<boolean[]>([]);
 
   const currentQuestion = questions[questionIndex];
 
@@ -31,9 +32,8 @@ export const QuestionsProvider: React.FC<{ questions: Question[] }> = (
 
   function submitAnswer() {
     if (!selectedAnswer) return;
-    if (selectedAnswer === currentQuestion.correctAnswer) {
-      setCorrectAnswers((state) => [...state, currentQuestion]);
-    }
+    const isAnswerCorrect = selectedAnswer === currentQuestion.correctAnswer;
+    setUserChoicesLog((state) => [...state, isAnswerCorrect]);
     setIsSubmited(true);
   }
 
@@ -43,6 +43,7 @@ export const QuestionsProvider: React.FC<{ questions: Question[] }> = (
         currentQuestion,
         goToNextQuestion,
         isSubmited,
+        userChoicesLog,
         selectedAnswer,
         setSelectedAnswer,
         submitAnswer,
