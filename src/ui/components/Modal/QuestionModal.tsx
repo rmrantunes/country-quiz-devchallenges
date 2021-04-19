@@ -10,7 +10,7 @@ export const QuestionModal = () => {
     submitAnswer,
   } = useContext(QuestionContext);
   return (
-    <div className="w-116 bg-white rounded-lg px-8 py-14 space-y-8">
+    <div className="space-y-8">
       <CurrentQuestion question={currentQuestion} />
       <div className="flex justify-end">
         {!isSubmitted ? (
