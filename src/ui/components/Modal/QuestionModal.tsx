@@ -12,11 +12,21 @@ export const QuestionModal = () => {
   return (
     <div className="space-y-8">
       <CurrentQuestion question={currentQuestion} />
-      <div className="flex justify-end">
+      <div className="grid grid-cols-2 h-12">
         {!isSubmitted ? (
-          <button onClick={submitAnswer}>Submit answer</button>
+          <button
+            onClick={submitAnswer}
+            className="col-start-2 bg-mustard rounded-lg text-white"
+          >
+            Submit answer
+          </button>
         ) : (
-          <button onClick={goToNextQuestion}>Next</button>
+          <button
+            onClick={goToNextQuestion}
+            className="col-start-2 bg-mustard rounded-lg text-white"
+          >
+            Next
+          </button>
         )}
       </div>
     </div>
