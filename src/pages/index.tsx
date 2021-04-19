@@ -9,15 +9,10 @@ import { Container } from "ui/components/Layout";
 import { Modal } from "ui/components/Modal";
 import { QuestionsProvider } from "ui/contexts/QuestionsContext";
 
-
 const questionGenerator = new QuestionGenerator({ countries, languages });
 
 export const getStaticProps = async () => {
-  const questions = [
-    questionGenerator.capitalOf(),
-    questionGenerator.flagOf(),
-    questionGenerator.languageOf(),
-  ];
+  const questions = questionGenerator.generate(10);
 
   return {
     props: {
