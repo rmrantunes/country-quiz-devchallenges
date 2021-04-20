@@ -1,31 +1,33 @@
 import React, { useContext } from "react";
-import { Question } from "types/question";
 import { QuestionContext } from "ui/contexts/QuestionsContext";
-
-interface CurrentQuestionProps {
-  question: Question;
-}
 
 const letters = ["A", "B", "C", "D"];
 
-export const CurrentQuestion = (props: CurrentQuestionProps) => {
-  const { selectedAnswer, setSelectedAnswer, isSubmitted } = useContext(
-    QuestionContext
-  );
-  const { correctAnswer } = props.question;
+export const CurrentQuestion = () => {
+  const {
+    selectedAnswer,
+    setSelectedAnswer,
+    isSubmitted,
+    currentQuestion,
+  } = useContext(QuestionContext);
+  const { correctAnswer } = currentQuestion;
+
 
   return (
     <div>
-      {props.question.flagSrc && (
-        <img src={props.question.flagSrc} alt={props.question.correctAnswer} />
+      {currentQuestion.flagSrc && (
+        <img
+          src={currentQuestion.flagSrc}
+          alt={currentQuestion.correctAnswer}
+        />
       )}
 
       <h2 className="text-2xl font-bold text-dark-blue mb-8">
-        {props.question.title}
+        {currentQuestion.title}
       </h2>
 
       <div className="space-y-4">
-        {props.question.possibleAnswers.map((possibleAnswer, index) => (
+        {currentQuestion.possibleAnswers.map((possibleAnswer, index) => (
           <button
             key={possibleAnswer}
             className={`flex px-4 py-3 bg-transparent w-full border text-gray-500 rounded-xl text-xl space-x-4 font-medium hover:bg-mustard hover:border-transparent hover:text-white transition ${

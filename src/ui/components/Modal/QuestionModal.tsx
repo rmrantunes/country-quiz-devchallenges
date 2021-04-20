@@ -4,7 +4,6 @@ import { CurrentQuestion } from "./CurrentQuestion";
 
 export const QuestionModal = () => {
   const {
-    currentQuestion,
     goToNextQuestion,
     selectedAnswer,
     isSubmitted,
@@ -12,7 +11,7 @@ export const QuestionModal = () => {
   } = useContext(QuestionContext);
   return (
     <div className="space-y-8">
-      <CurrentQuestion question={currentQuestion} />
+      <CurrentQuestion />
       <div className="grid grid-cols-2 h-12">
         {!isSubmitted ? (
           <button
