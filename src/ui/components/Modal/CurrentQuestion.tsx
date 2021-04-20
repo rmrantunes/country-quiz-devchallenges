@@ -12,6 +12,25 @@ export const CurrentQuestion = () => {
   } = useContext(QuestionContext);
   const { correctAnswer } = currentQuestion;
 
+  function selectedAnswerClasses(possibleAnswer: string) {
+    return selectedAnswer === possibleAnswer
+      ? "bg-mustard  text-white"
+      : "border-gray-500";
+  }
+
+  function correctAnswerClasses(possibleAnswer: string) {
+    return isSubmitted && possibleAnswer === correctAnswer
+      ? "bg-green-500 text-white"
+      : "";
+  }
+
+  function wrongAnswerClasses(possibleAnswer: string) {
+    return isSubmitted &&
+      possibleAnswer !== correctAnswer &&
+      selectedAnswer === possibleAnswer
+      ? "bg-red-500"
+      : "";
+  }
 
   return (
     <div>
@@ -30,21 +49,10 @@ export const CurrentQuestion = () => {
         {currentQuestion.possibleAnswers.map((possibleAnswer, index) => (
           <button
             key={possibleAnswer}
-            className={`flex px-4 py-3 bg-transparent w-full border text-gray-500 rounded-xl text-xl space-x-4 font-medium hover:bg-mustard hover:border-transparent hover:text-white transition ${
-              selectedAnswer === possibleAnswer
-                ? "bg-mustard  text-white"
-                : "border-gray-500"
-            } ${
-              isSubmitted && possibleAnswer === correctAnswer
-                ? "bg-green-500 text-white"
-                : ""
-            }${
-              isSubmitted &&
-              possibleAnswer !== correctAnswer &&
-              selectedAnswer === possibleAnswer
-                ? "bg-red-500"
-                : ""
-            }
+            className={`flex px-4 py-3 bg-transparent w-full border text-gray-500 rounded-xl text-xl space-x-4 font-medium hover:bg-mustard hover:border-transparent hover:text-white transition 
+            ${selectedAnswerClasses(possibleAnswer)} 
+            ${correctAnswerClasses(possibleAnswer)}
+            ${wrongAnswerClasses(possibleAnswer)}
             `}
             type="button"
             disabled={isSubmitted}
