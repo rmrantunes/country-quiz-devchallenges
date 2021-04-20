@@ -45,7 +45,7 @@ export class QuestionGenerator {
       type: QuestionType.CAPITAL_OF,
       title: correctCountry.capital + " is the capital of",
       correctAnswer: correctCountry.name,
-      possibleAnswers: countriesCapitalAndName.map(({ name }) => name),
+      options: countriesCapitalAndName.map(({ name }) => name),
     };
   }
 
@@ -63,7 +63,7 @@ export class QuestionGenerator {
       flagSrc: `https://www.countryflags.io/${correctCountry.code}/flat/64.png`,
       title: "Which country does this flag belongs to?",
       correctAnswer: correctCountry.name,
-      possibleAnswers: countriesNameAndCode.map(({ name }) => name),
+      options: countriesNameAndCode.map(({ name }) => name),
     };
   }
 
@@ -94,7 +94,7 @@ export class QuestionGenerator {
       language
     );
 
-    const possibleAnswers = [
+    const options = [
       ...notLanguageSpeakerCountries.map(({ name }) => name),
       languageSpeakerCountry.name,
     ];
@@ -102,7 +102,7 @@ export class QuestionGenerator {
     return {
       type: QuestionType.LANGUAGE_OF,
       correctAnswer: languageSpeakerCountry.name,
-      possibleAnswers,
+      options,
       title: `Which one of these countries speaks ${language.name}?`,
     };
   }

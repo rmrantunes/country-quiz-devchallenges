@@ -12,22 +12,20 @@ export const CurrentQuestion = () => {
   } = useContext(QuestionContext);
   const { correctAnswer } = currentQuestion;
 
-  function selectedAnswerClasses(possibleAnswer: string) {
-    return selectedAnswer === possibleAnswer
+  function selectedAnswerClasses(option: string) {
+    return selectedAnswer === option
       ? "bg-mustard border-transparent text-white"
       : "border-gray-500";
   }
 
-  function correctAnswerClasses(possibleAnswer: string) {
-    return isSubmitted && possibleAnswer === correctAnswer
+  function correctAnswerClasses(option: string) {
+    return isSubmitted && option === correctAnswer
       ? "bg-green-500 border-transparent text-white"
       : "";
   }
 
-  function wrongAnswerClasses(possibleAnswer: string) {
-    return isSubmitted &&
-      possibleAnswer !== correctAnswer &&
-      selectedAnswer === possibleAnswer
+  function wrongAnswerClasses(option: string) {
+    return isSubmitted && selectedAnswer === option && option !== correctAnswer
       ? "bg-red-500 border-transparent"
       : "";
   }
@@ -46,20 +44,20 @@ export const CurrentQuestion = () => {
       </h2>
 
       <div className="space-y-4">
-        {currentQuestion.possibleAnswers.map((possibleAnswer, index) => (
+        {currentQuestion.options.map((option, index) => (
           <button
-            key={possibleAnswer}
+            key={option}
             className={`flex px-4 py-3 bg-transparent w-full border text-gray-500 rounded-xl text-xl space-x-4 font-medium hover:bg-mustard hover:border-transparent hover:text-white transition 
-            ${selectedAnswerClasses(possibleAnswer)} 
-            ${correctAnswerClasses(possibleAnswer)}
-            ${wrongAnswerClasses(possibleAnswer)}
+            ${selectedAnswerClasses(option)} 
+            ${correctAnswerClasses(option)}
+            ${wrongAnswerClasses(option)}
             `.replace(/\s+/g, " ")}
             type="button"
             disabled={isSubmitted}
-            onClick={() => setSelectedAnswer(possibleAnswer)}
+            onClick={() => setSelectedAnswer(option)}
           >
             <span>{letters[index]}</span>
-            <span className="flex-1 text-left">{possibleAnswer}</span>
+            <span className="flex-1 text-left">{option}</span>
           </button>
         ))}
       </div>

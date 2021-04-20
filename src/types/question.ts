@@ -11,5 +11,5 @@ export interface Question {
   flagSrc?: string;
   title: string;
   correctAnswer: string;
-  possibleAnswers: string[];
+  options: string[];
 }
