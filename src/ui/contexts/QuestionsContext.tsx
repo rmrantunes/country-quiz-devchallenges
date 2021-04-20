@@ -1,7 +1,7 @@
 import React, { createContext, useState } from "react";
 import { Question } from "types/question";
 
-interface QuestionContextValue {
+interface QuestionsContextValue {
   currentQuestion: Question;
   goToNextQuestion(): void;
   isSubmitted: boolean;
@@ -12,7 +12,7 @@ interface QuestionContextValue {
   hasSessionFinished: boolean;
 }
 
-export const QuestionContext = createContext({} as QuestionContextValue);
+export const QuestionsContext = createContext({} as QuestionsContextValue);
 
 export const QuestionsProvider: React.FC<{ questions: Question[] }> = (
   props
@@ -46,7 +46,7 @@ export const QuestionsProvider: React.FC<{ questions: Question[] }> = (
   }
 
   return (
-    <QuestionContext.Provider
+    <QuestionsContext.Provider
       value={{
         currentQuestion,
         goToNextQuestion,
@@ -59,6 +59,6 @@ export const QuestionsProvider: React.FC<{ questions: Question[] }> = (
       }}
     >
       {props.children}
-    </QuestionContext.Provider>
+    </QuestionsContext.Provider>
   );
 };

@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { QuestionContext } from "ui/contexts/QuestionsContext";
+import { QuestionsContext } from "ui/contexts/QuestionsContext";
 import { QuestionModal } from "./QuestionModal";
 
 export const Modal = () => {
-  const { hasSessionFinished } = useContext(QuestionContext);
+  const { hasSessionFinished } = useContext(QuestionsContext);
   return (
     <div>
       <h1 className="text-4xl font-bold text-white mb-2">COUNTRY QUIZ</h1>

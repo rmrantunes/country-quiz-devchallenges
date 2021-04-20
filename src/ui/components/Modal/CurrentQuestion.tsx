@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { QuestionContext } from "ui/contexts/QuestionsContext";
+import { QuestionsContext } from "ui/contexts/QuestionsContext";
 
 const letters = ["A", "B", "C", "D"];
 
@@ -9,7 +9,7 @@ export const CurrentQuestion = () => {
     setSelectedAnswer,
     isSubmitted,
     currentQuestion,
-  } = useContext(QuestionContext);
+  } = useContext(QuestionsContext);
   const { correctAnswer } = currentQuestion;
 
   function selectedAnswerClasses(option: string) {

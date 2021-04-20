@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { QuestionContext } from "ui/contexts/QuestionsContext";
+import { QuestionsContext } from "ui/contexts/QuestionsContext";
 import { CurrentQuestion } from "./CurrentQuestion";
 
 export const QuestionModal = () => {
@@ -8,7 +8,7 @@ export const QuestionModal = () => {
     selectedAnswer,
     isSubmitted,
     submitAnswer,
-  } = useContext(QuestionContext);
+  } = useContext(QuestionsContext);
   return (
     <div className="space-y-8">
       <CurrentQuestion />
