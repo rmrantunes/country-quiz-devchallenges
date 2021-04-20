@@ -53,7 +53,7 @@ export const CurrentQuestion = () => {
             ${selectedAnswerClasses(possibleAnswer)} 
             ${correctAnswerClasses(possibleAnswer)}
             ${wrongAnswerClasses(possibleAnswer)}
-            `}
+            `.replace(/\s+/g, " ")}
             type="button"
             disabled={isSubmitted}
             onClick={() => setSelectedAnswer(possibleAnswer)}
