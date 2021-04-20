@@ -14,13 +14,13 @@ export const CurrentQuestion = () => {
 
   function selectedAnswerClasses(possibleAnswer: string) {
     return selectedAnswer === possibleAnswer
-      ? "bg-mustard  text-white"
+      ? "bg-mustard border-transparent text-white"
       : "border-gray-500";
   }
 
   function correctAnswerClasses(possibleAnswer: string) {
     return isSubmitted && possibleAnswer === correctAnswer
-      ? "bg-green-500 text-white"
+      ? "bg-green-500 border-transparent text-white"
       : "";
   }
 
@@ -28,7 +28,7 @@ export const CurrentQuestion = () => {
     return isSubmitted &&
       possibleAnswer !== correctAnswer &&
       selectedAnswer === possibleAnswer
-      ? "bg-red-500"
+      ? "bg-red-500 border-transparent"
       : "";
   }
 
