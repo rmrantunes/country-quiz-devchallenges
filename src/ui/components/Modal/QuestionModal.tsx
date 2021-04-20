@@ -6,6 +6,7 @@ export const QuestionModal = () => {
   const {
     currentQuestion,
     goToNextQuestion,
+    selectedAnswer,
     isSubmitted,
     submitAnswer,
   } = useContext(QuestionContext);
@@ -16,7 +17,10 @@ export const QuestionModal = () => {
         {!isSubmitted ? (
           <button
             onClick={submitAnswer}
-            className="col-start-2 bg-mustard rounded-lg text-white"
+            disabled={!selectedAnswer}
+            className={`col-start-2 rounded-lg text-white ${
+              selectedAnswer ? "bg-mustard" : "bg-gray-500 cursor-not-allowed"
+            }`}
           >
             Submit answer
           </button>
