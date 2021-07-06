@@ -27,12 +27,14 @@ const useQuiz = create<QuizState>((set, get) => ({
   currentQuestion: undefined,
 
   startNewSession() {
+    const newQuestions = generateQuiz(10);
+
     set((state) => ({
       ...state,
-      questions: generateQuiz(10),
+      questions: newQuestions,
+      currentQuestion: newQuestions[0],
       hasSessionFinished: false,
       userAnswersLog: [],
-      questionIndex: 0,
     }));
   },
 
@@ -66,7 +68,7 @@ const useQuiz = create<QuizState>((set, get) => ({
             questionIndex: state.questionIndex + 1,
             currentQuestion: state.questions[state.questionIndex + 1],
           }
-        : { hasSessionFinished: true }),
+        : { hasSessionFinished: true, questionIndex: 0 }),
     }));
   },
 
