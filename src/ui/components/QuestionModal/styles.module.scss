@@ -1,0 +1,23 @@
+.questionModal {
+  display: grid;
+  gap: 2rem;
+
+  .footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 3rem;
+
+    > button {
+      grid-column-start: 2;
+
+      border-radius: 0.5rem;
+      color: #fff;
+      background: rgb(249, 168, 38);
+
+      &:disabled {
+        background: rgb(107, 114, 128);
+        cursor: not-allowed;
+      }
+    }
+  }
+}
