@@ -46,16 +46,20 @@ const useQuiz = create<QuizState>((set, get) => ({
   },
 
   submitAnswer() {
-    const selectedAnswer = get().selectedAnswer;
-    const currentQuestion = get().questions[get().questionIndex];
+    set((state) => {
+      const selectedAnswer = state.selectedAnswer;
+      const currentQuestion = state.questions[state.questionIndex];
 
-    if (!selectedAnswer) return;
-    const { correctAnswer } = currentQuestion;
-    const isSelectedAnswerCorrect = selectedAnswer === correctAnswer;
-    set((state) => ({
-      userAnswersLog: [...state.userAnswersLog, isSelectedAnswerCorrect],
-      isSubmitted: true,
-    }));
+      if (!selectedAnswer) return { ...state };
+
+      const { correctAnswer } = currentQuestion;
+      const isSelectedAnswerCorrect = selectedAnswer === correctAnswer;
+
+      return {
+        userAnswersLog: [...state.userAnswersLog, isSelectedAnswerCorrect],
+        isSubmitted: true,
+      };
+    });
   },
 
   goToNextQuestion() {
