@@ -1,14 +1,16 @@
 import React, { useContext } from "react";
 import { QuestionsContext } from "ui/contexts/QuestionsContext";
-import { QuestionModal } from "./QuestionModal";
+import QuestionModal from "ui/components/QuestionModal";
+
+import styles from "./styles.module.scss";
 
 export const Modal = () => {
   const { hasSessionFinished, userAnswersLog, startNewSession } =
     useContext(QuestionsContext);
   return (
-    <div>
-      <h1 className="text-4xl font-bold text-white mb-2">COUNTRY QUIZ</h1>
-      <div className="w-116 bg-white rounded-lg px-8 py-14 ">
+    <div className={styles.wrapper}>
+      <h1>COUNTRY QUIZ</h1>
+      <div className={styles.modal}>
         {!hasSessionFinished && <QuestionModal />}
         {hasSessionFinished && (
           <div>
