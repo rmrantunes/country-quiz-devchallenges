@@ -1,4 +1,7 @@
 .question {
+  display: grid;
+  gap: 1rem;
+
   .title {
     font-size: 1.5rem;
     font-weight: 700;
@@ -15,8 +18,8 @@
   display: flex;
   padding: 0.75rem 1rem;
   width: 100%;
-  border: 1px solid rgb(107, 114, 128);
-  color: rgb(107, 114, 128);
+  border: 1px solid #777;
+  color: #777;
   border-radius: 0.75rem;
 
   font-size: 1.25rem;
