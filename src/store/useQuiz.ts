@@ -1,6 +1,5 @@
 import create from "zustand";
 import { generateQuiz, Question } from "country-quiz-generator";
-import { useMemo } from "react";
 
 interface QuizState {
   questions: Question[];
