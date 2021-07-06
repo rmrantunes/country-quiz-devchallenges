@@ -1,7 +1,8 @@
 import { generateQuiz } from "country-quiz-generator";
 import { InferGetServerSidePropsType } from "next";
+import Center from "ui/components/Center";
+import Container from "ui/components/Container";
 
-import { Container } from "ui/components/Layout";
 import { Modal } from "ui/components/Modal";
 import { QuestionsProvider } from "ui/contexts/QuestionsContext";
 
@@ -19,12 +20,12 @@ export default function Home(
   props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) {
   return (
-    <div className="min-h-screen bg-blue-400">
-      <Container>
+    <Container>
+      <Center>
         <QuestionsProvider questions={props.questions}>
           <Modal />
         </QuestionsProvider>
-      </Container>
-    </div>
+      </Center>
+    </Container>
   );
 }
