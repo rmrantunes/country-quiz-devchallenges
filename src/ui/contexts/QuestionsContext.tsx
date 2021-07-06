@@ -22,7 +22,7 @@ export const QuestionsProvider: React.FC<{ questions: Question[] }> = (
   const [questions, setQuestions] = useState(props.questions);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState("");
-  const [userAnswersLog, setuserAnswersLog] = useState<boolean[]>([]);
+  const [userAnswersLog, setUserAnswersLog] = useState<boolean[]>([]);
   const [hasSessionFinished, setHasSessionFinished] = useState(false);
 
   const currentQuestion = questions[questionIndex];
@@ -41,6 +41,7 @@ export const QuestionsProvider: React.FC<{ questions: Question[] }> = (
   function startNewSession() {
     setQuestions(() => generateQuiz(10));
     setHasSessionFinished(false);
+    setUserAnswersLog([])
     setQuestionIndex(0);
   }
 
@@ -48,7 +49,7 @@ export const QuestionsProvider: React.FC<{ questions: Question[] }> = (
     if (!selectedAnswer) return;
     const { correctAnswer } = currentQuestion;
     const isSelectedAnswerCorrect = selectedAnswer === correctAnswer;
-    setuserAnswersLog((state) => [...state, isSelectedAnswerCorrect]);
+    setUserAnswersLog((state) => [...state, isSelectedAnswerCorrect]);
     setIsSubmitted(true);
   }
 
