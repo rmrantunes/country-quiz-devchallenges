@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-import { Question } from "types/question";
+import { generateQuiz, Question } from "country-quiz-generator";
 
 interface QuestionsContextValue {
   currentQuestion: Question;
@@ -10,6 +10,7 @@ interface QuestionsContextValue {
   userAnswersLog: boolean[];
   submitAnswer(): void;
   hasSessionFinished: boolean;
+  startNewSession(): void;
 }
 
 export const QuestionsContext = createContext({} as QuestionsContextValue);
@@ -18,7 +19,7 @@ export const QuestionsProvider: React.FC<{ questions: Question[] }> = (
   props
 ) => {
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [questions] = useState(props.questions);
+  const [questions, setQuestions] = useState(props.questions);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [userAnswersLog, setuserAnswersLog] = useState<boolean[]>([]);
@@ -35,6 +36,12 @@ export const QuestionsProvider: React.FC<{ questions: Question[] }> = (
       return;
     }
     setHasSessionFinished(true);
+  }
+
+  function startNewSession() {
+    setQuestions(() => generateQuiz(10));
+    setHasSessionFinished(false);
+    setQuestionIndex(0);
   }
 
   function submitAnswer() {
@@ -56,6 +63,7 @@ export const QuestionsProvider: React.FC<{ questions: Question[] }> = (
         setSelectedAnswer,
         submitAnswer,
         hasSessionFinished,
+        startNewSession,
       }}
     >
       {props.children}
