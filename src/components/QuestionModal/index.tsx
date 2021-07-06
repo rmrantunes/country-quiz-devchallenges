@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
-import { QuestionsContext } from "ui/contexts/QuestionsContext";
-import Question from "ui/components/Question";
+import { QuestionsContext } from "contexts/QuestionsContext";
+import Question from "components/Question";
 
 import styles from "./styles.module.scss";
-import Button from "ui/components/Button";
+import Button from "components/Button";
 
 const QuestionModal = () => {
   const { goToNextQuestion, selectedAnswer, isSubmitted, submitAnswer } =

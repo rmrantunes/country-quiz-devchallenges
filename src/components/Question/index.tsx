@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import clsx from "classnames";
 
-import { QuestionsContext } from "ui/contexts/QuestionsContext";
+import { QuestionsContext } from "contexts/QuestionsContext";
 
 import styles from "./styles.module.scss";
 

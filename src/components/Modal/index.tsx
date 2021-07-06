@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { QuestionsContext } from "ui/contexts/QuestionsContext";
-import QuestionModal from "ui/components/QuestionModal";
-import StatsModal from "ui/components/StatsModal";
+import { QuestionsContext } from "contexts/QuestionsContext";
+import QuestionModal from "components/QuestionModal";
+import StatsModal from "components/StatsModal";
 
 import styles from "./styles.module.scss";
 import Progress from "../Progress";
