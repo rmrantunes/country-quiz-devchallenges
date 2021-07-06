@@ -2,6 +2,10 @@
 
 App based on the devchallenges.io challenge.
 
+### Deploy
+
+[Click here to see it working](http://country-quiz-devchallenges.vercel.app/)
+
 ## Used tools:
 
 - Next.js
