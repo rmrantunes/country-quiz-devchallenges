@@ -6,6 +6,7 @@ App based on the devchallenges.io challenge.
 
 - Next.js
 - Typescript
+- [Zustand](https://github.com/pmndrs/zustand)
 - Sass
 - My own [package](https://www.npmjs.com/package/country-quiz-generator) to generate the questions
 
