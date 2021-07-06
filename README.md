@@ -13,4 +13,4 @@ App based on the devchallenges.io challenge.
 
 ![Question choose](/public/screenshots/capital-choice.png)
 ![Flag question](/public/screenshots/flag-submitted.png)
-![Final score: 7/10](/public/screenshots/score-7.png)
+![Final score: 7/10](/public/screenshots/score.png)
