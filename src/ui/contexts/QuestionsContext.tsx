@@ -2,6 +2,7 @@ import React, { createContext, useState } from "react";
 import { generateQuiz, Question } from "country-quiz-generator";
 
 interface QuestionsContextValue {
+  questionIndex: number;
   currentQuestion: Question;
   goToNextQuestion(): void;
   isSubmitted: boolean;
@@ -41,7 +42,7 @@ export const QuestionsProvider: React.FC<{ questions: Question[] }> = (
   function startNewSession() {
     setQuestions(() => generateQuiz(10));
     setHasSessionFinished(false);
-    setUserAnswersLog([])
+    setUserAnswersLog([]);
     setQuestionIndex(0);
   }
 
@@ -56,6 +57,7 @@ export const QuestionsProvider: React.FC<{ questions: Question[] }> = (
   return (
     <QuestionsContext.Provider
       value={{
+        questionIndex,
         currentQuestion,
         goToNextQuestion,
         isSubmitted,

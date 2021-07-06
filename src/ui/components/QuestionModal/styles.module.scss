@@ -1,0 +1,14 @@
+.questionModal {
+  display: grid;
+  gap: 2rem;
+
+  .footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 3rem;
+
+    > button {
+      grid-column-start: 2;
+    }
+  }
+}

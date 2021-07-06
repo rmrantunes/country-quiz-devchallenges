@@ -1,0 +1,54 @@
+.question {
+  display: grid;
+  gap: 1rem;
+
+  .title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2f527b;
+  }
+}
+
+.options {
+  display: grid;
+  gap: 1rem;
+}
+
+.option {
+  display: flex;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  border: 1px solid #777;
+  color: #777;
+  border-radius: 0.75rem;
+
+  font-size: 1.25rem;
+
+  text-align: left;
+
+  gap: 1rem;
+  font-weight: 500;
+
+  transition: all 0.2s;
+
+  &:hover,
+  &.isSelected {
+    background: #f9a826;
+    border-color: transparent;
+  }
+
+  &.isCorrect {
+    background: rgb(16, 185, 129);
+    color: #fff;
+    border-color: transparent;
+  }
+
+  &.isWrong {
+    background: rgb(239, 68, 68);
+    border-color: transparent;
+  }
+
+  .option-value {
+    flex: 1;
+  }
+}
