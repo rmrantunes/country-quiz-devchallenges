@@ -4,12 +4,8 @@ import { QuestionsContext } from "ui/contexts/QuestionsContext";
 const letters = ["A", "B", "C", "D"];
 
 export const CurrentQuestion = () => {
-  const {
-    selectedAnswer,
-    setSelectedAnswer,
-    isSubmitted,
-    currentQuestion,
-  } = useContext(QuestionsContext);
+  const { selectedAnswer, setSelectedAnswer, isSubmitted, currentQuestion } =
+    useContext(QuestionsContext);
   const { correctAnswer } = currentQuestion;
 
   function selectedAnswerClasses(option: string) {
@@ -47,7 +43,7 @@ export const CurrentQuestion = () => {
         {currentQuestion.options.map((option, index) => (
           <button
             key={option}
-            className={`flex px-4 py-3 bg-transparent w-full border text-gray-500 rounded-xl text-xl space-x-4 font-medium hover:bg-mustard hover:border-transparent hover:text-white transition 
+            className={`flex px-4 py-3 w-full border text-gray-500 rounded-xl text-xl space-x-4 font-medium hover:bg-mustard hover:border-transparent hover:text-white transition 
             ${selectedAnswerClasses(option)} 
             ${correctAnswerClasses(option)}
             ${wrongAnswerClasses(option)}
