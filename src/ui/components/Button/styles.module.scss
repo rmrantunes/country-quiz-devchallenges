@@ -1,0 +1,11 @@
+.button {
+  border-radius: 0.5rem;
+  color: #fff;
+  background: rgb(249, 168, 38);
+  padding: 0.75rem 1rem;
+
+  &:disabled {
+    background: rgb(107, 114, 128);
+    cursor: not-allowed;
+  }
+}
