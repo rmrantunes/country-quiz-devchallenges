@@ -6,8 +6,13 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div>
-        <span>Made by </span>
-        <a href="https://github.com/rmrantunes"> @rmrantunes</a>
+        <span>
+          Made by <a href="https://github.com/rmrantunes"> @rmrantunes</a> using{" "}
+          <a href="https://www.npmjs.com/package/country-quiz-generator">
+            country-quiz-generator
+          </a>{" "}
+          package
+        </span>
       </div>
     </footer>
   );
