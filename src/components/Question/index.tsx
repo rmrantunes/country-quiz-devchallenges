@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
+import React from "react";
 import clsx from "classnames";
 
-import { QuestionsContext } from "contexts/QuestionsContext";
 
 import styles from "./styles.module.scss";
+import useQuiz from "store/useQuiz";
 
 const letters = ["A", "B", "C", "D"];
 
 const Question = () => {
   const { selectedAnswer, setSelectedAnswer, isSubmitted, currentQuestion } =
-    useContext(QuestionsContext);
+    useQuiz()
 
   const { correctAnswer } = currentQuestion;
 

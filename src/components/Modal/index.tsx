@@ -1,18 +1,22 @@
-import React, { useContext } from "react";
-import { QuestionsContext } from "contexts/QuestionsContext";
+import React from "react";
 import QuestionModal from "components/QuestionModal";
 import StatsModal from "components/StatsModal";
 
 import styles from "./styles.module.scss";
 import Progress from "../Progress";
+import useQuiz from "store/useQuiz";
 
 export const Modal = () => {
-  const { hasSessionFinished, userAnswersLog, startNewSession, questionIndex } =
-    useContext(QuestionsContext);
+  const {
+    hasSessionFinished,
+    startNewSession,
+    getProgress,
+    getCorrectAnswersAmount,
+  } = useQuiz();
 
   const progressPercentage = hasSessionFinished
-    ? (userAnswersLog.filter(Boolean).length / 10) * 100
-    : (questionIndex / 10) * 100;
+    ? (getCorrectAnswersAmount() / 10) * 100
+    : getProgress();
 
   return (
     <div className={styles.wrapper}>
@@ -23,7 +27,7 @@ export const Modal = () => {
         {hasSessionFinished && (
           <StatsModal
             onRestart={startNewSession}
-            correctAnswers={userAnswersLog.filter(Boolean).length}
+            correctAnswers={getCorrectAnswersAmount()}
           />
         )}
       </div>

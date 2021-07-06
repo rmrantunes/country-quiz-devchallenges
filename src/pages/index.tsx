@@ -5,7 +5,7 @@ import Container from "components/Container";
 import Footer from "components/Footer";
 
 import { Modal } from "components/Modal";
-import { QuestionsProvider } from "contexts/QuestionsContext";
+import useQuiz from "store/useQuiz";
 
 export const getServerSideProps = async () => {
   const questions = generateQuiz(10);
@@ -20,12 +20,15 @@ export const getServerSideProps = async () => {
 export default function Home(
   props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) {
+  useQuiz.setState({
+    questions: props.questions,
+    currentQuestion: props.questions[0],
+  }); 
+
   return (
     <Container>
       <Center>
-        <QuestionsProvider questions={props.questions}>
-          <Modal />
-        </QuestionsProvider>
+        <Modal />
       </Center>
       <Footer />
     </Container>

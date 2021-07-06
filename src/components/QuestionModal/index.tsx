@@ -1,13 +1,15 @@
-import React, { useContext, useState } from "react";
-import { QuestionsContext } from "contexts/QuestionsContext";
+import React from "react";
+
 import Question from "components/Question";
 
 import styles from "./styles.module.scss";
 import Button from "components/Button";
+import useQuiz from "store/useQuiz";
 
 const QuestionModal = () => {
   const { goToNextQuestion, selectedAnswer, isSubmitted, submitAnswer } =
-    useContext(QuestionsContext);
+    useQuiz();
+
   return (
     <div className={styles.questionModal}>
       <Question />
