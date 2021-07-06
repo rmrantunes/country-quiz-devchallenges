@@ -3,6 +3,7 @@ import { QuestionsContext } from "ui/contexts/QuestionsContext";
 import Question from "ui/components/Question";
 
 import styles from "./styles.module.scss";
+import Button from "ui/components/Button";
 
 const QuestionModal = () => {
   const { goToNextQuestion, selectedAnswer, isSubmitted, submitAnswer } =
@@ -12,11 +13,11 @@ const QuestionModal = () => {
       <Question />
       <div className={styles.footer}>
         {!isSubmitted ? (
-          <button onClick={submitAnswer} disabled={!selectedAnswer}>
+          <Button onClick={submitAnswer} disabled={!selectedAnswer}>
             Submit answer
-          </button>
+          </Button>
         ) : (
-          <button onClick={goToNextQuestion}>Next</button>
+          <Button onClick={goToNextQuestion}>Next</Button>
         )}
       </div>
     </div>
