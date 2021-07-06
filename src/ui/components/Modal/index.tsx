@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { QuestionsContext } from "ui/contexts/QuestionsContext";
 import QuestionModal from "ui/components/QuestionModal";
+import StatsModal from "ui/components/StatsModal";
 
 import styles from "./styles.module.scss";
 
@@ -13,12 +14,10 @@ export const Modal = () => {
       <div className={styles.modal}>
         {!hasSessionFinished && <QuestionModal />}
         {hasSessionFinished && (
-          <div>
-            <strong>
-              You score {userAnswersLog.filter(Boolean).length}/10
-            </strong>
-            <button onClick={startNewSession}>Jogar novamente</button>
-          </div>
+          <StatsModal
+            onRestart={startNewSession}
+            correctAnswers={userAnswersLog.filter(Boolean).length}
+          />
         )}
       </div>
     </div>
