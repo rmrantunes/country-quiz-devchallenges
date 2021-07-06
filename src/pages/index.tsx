@@ -2,6 +2,7 @@ import { generateQuiz } from "country-quiz-generator";
 import { InferGetServerSidePropsType } from "next";
 import Center from "ui/components/Center";
 import Container from "ui/components/Container";
+import Footer from "ui/components/Footer";
 
 import { Modal } from "ui/components/Modal";
 import { QuestionsProvider } from "ui/contexts/QuestionsContext";
@@ -26,6 +27,7 @@ export default function Home(
           <Modal />
         </QuestionsProvider>
       </Center>
+      <Footer />
     </Container>
   );
 }
