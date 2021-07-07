@@ -4,7 +4,7 @@ App based on the devchallenges.io challenge.
 
 ### Deploy
 
-[Click here to see it working](http://country-quiz-devchallenges.vercel.app/)
+[Click here to see it working](https://country-quiz-devchallenges.vercel.app/)
 
 ## Used tools:
 
@@ -18,4 +18,4 @@ App based on the devchallenges.io challenge.
 
 ![Question choose](/public/screenshots/capital-choice.png)
 ![Flag question](/public/screenshots/flag-submitted.png)
-![Final score: 7/10](/public/screenshots/score.png)
+![Final score: 8/10](/public/screenshots/score.png)
